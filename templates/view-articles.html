@@ -1,0 +1,36 @@
+{%include "components/navbar.html"%}
+<link href="{{url_for('static',filename='view_articles.css')}}" rel="stylesheet" />
+
+
+<div class="mx-5 mt-4 row d-flex justify-content-between">
+{% for article in articles.items%}
+<a href="{{url_for('view_articles_blueprint.view_article_content', article_id=article.id, article_topic=article.topic)}}" class="col-12 col-sm-6 col-lg-3">
+  <div class="article ">
+    <div class="article-content">
+      <h6>{{article.course}}</h6>
+      <h4>{{article.topic}}</h4>
+      {{article.body | safe}}
+    </div>
+  </div>
+</a>
+{%endfor%}
+
+  <div class="page_numbering">
+    {%for page_num in
+    articles.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2)%}
+    {%if page_num%} {% if articles.page == page_num%}
+    <a class="btn btn-dark mb-4" href="{{url_for('view_articles_blueprint.view_articles',page=page_num)}}">
+      {{page_num}}
+    </a>
+    {%else%}
+    <a
+      class="btn btn-outline-dark mb-4"
+      href="{{url_for('view_articles_blueprint.view_articles',page=page_num)}}"
+    >
+      {{page_num}}
+    </a>
+    {%endif%} {%else%} ... {%endif%} {%endfor%}
+  </div>
+</div>
+
+{%include "components/footer.html"%}

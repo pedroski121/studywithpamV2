@@ -1,0 +1,62 @@
+{%include "components/navbar.html "%}
+
+<link href="{{url_for('static',filename='admin-dashboard.css')}}" rel="stylesheet"/>
+
+<div class="row text-white admin-header">
+
+    <div class="col-9">
+      <div class="col-md-9 admin-content">
+        <span
+          ><h4>Admin</h4>
+      </div>
+    </div>
+</div>
+
+<div class="row m-4">
+    <div class="col-md-2">
+        <a href="{{url_for('admin_dashboard_blueprint.create_article')}}">
+          <button class="btn btn-primary">CREATE ARTICLE</button></a>
+          <a href="{{url_for('admin_dashboard_blueprint.create_article')}}">
+            <button class="btn btn-success mt-3">UPLOAD IMAGE</button></a>
+    </div>
+
+
+    <div class="col-md-10">
+      <div class="mx-5 mt-4 row d-flex justify-content-between">
+        {% for article in articles.items %}
+        <div class="col-12 col-sm-6 col-lg-3 article" >
+            <section class="row justisfy-content-between header">
+                <a class="col-6" href="{{url_for('admin_dashboard_blueprint.edit_article', article_id=article.id, article_topic= article.topic)}}"><span class="badge bg-primary">Edit Article</span></a>
+                 <a class="col-6" href="{{url_for('admin_dashboard_blueprint.delete_article', article_id=article.id, article_topic= article.topic)}}"><span class="badge bg-danger" >Delete Article</span></a>        
+                 <h4 class="mt-2">{{article.topic}}</h4>
+
+                </section>
+           <section class="article-content">
+            {{article.body[0:600] | safe}}<span>...</span>
+          </section>
+          <section class="read-more">
+            <a href="{{url_for('view_articles_blueprint.view_article_content', article_id=article.id, article_topic=article.topic)}}"> Read More </a>
+          </section>
+        </div>
+      {%endfor%}
+      </div>  
+      <div class="page_numbering">
+        {%for page_num in
+        articles.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2)%}
+        {%if page_num%} {% if articles.page == page_num%}
+        <a class="btn btn-dark mb-4" href="{{url_for('admin_dashboard_blueprint.admin_dashboard',page=page_num)}}">
+          {{page_num}}
+        </a>
+        {%else%}
+        <a
+          class="btn btn-outline-dark mb-4"
+          href="{{url_for('admin_dashboard_blueprint.admin_dashboard',page=page_num)}}"
+        >
+          {{page_num}}
+        </a>
+        {%endif%} {%else%} ... {%endif%} {%endfor%}
+      </div>
+    </div>
+  </div>
+
+  {%include "components/footer.html" %}

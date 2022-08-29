@@ -1,0 +1,42 @@
+{%include "components/navbar.html"%}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<link href="{{url_for('static',filename='view-article-content.css')}}" rel="stylesheet" />
+      <div><span class="course">{{article.course}}</span> | <span class="date">{{article.date}}</span></div>
+      <div class="row d-flex justify-content-between">
+        <h1>{{article.topic}}</h1>
+      </div>
+      <hr />
+      <div class="content">
+        {{article.body | safe}}
+      </div>
+
+      <h3>Comments</h3>
+      <hr/>
+      {%if comments%}
+      {%for comment in comments%}
+      <div class="comment mt-4">
+        <h6>{{comment.name}} | <span class="date">{{comment.date}}</span></h6>
+        <div class="comment-box m-1 p-1">
+          <p>{{comment.comment | safe}}</p>
+      </div>
+    </div>
+     {% endfor %}
+      {%endif%}
+<h2 class="mt-5">Add Comment</h2>
+{%block content%}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+      {% for category, message in messages %}
+              <span class="alert">{{ message }}</span>
+      {% endfor %}
+  {% endif %}
+  {% endwith %}
+      {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "dark"}) }}
+      {{ ckeditor.load(pkg_type="basic") }}
+      {{ ckeditor.config(name='body') }}
+
+{%endblock%}
+  {%include "components/footer.html"%}
+
+

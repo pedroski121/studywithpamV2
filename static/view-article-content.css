@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,500&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #000;
+}
+
+.date {
+  font-size: 12px;
+  color: #333030;
+}
+.course {
+    font-size: 13px;
+    color: black;
+    font-weight: bold;
+}
+.content{
+    color: black;
+}
+
+.comment h6{
+   color: #000;
+   font-size: 13px;
+   font-weight: bold;
+  }
+.comment-box {
+  background-color: #dfdada;
+  height: auto;
+  border-radius: 5px;
+  color: black;
+  font-style: italic;
+}
