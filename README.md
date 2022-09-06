@@ -2,7 +2,7 @@ To run this on your pc
 
 1. Ensure you have python3 and pip installed on your local machine
 2. In the project directory run <br/>
-   '''pip install -r requirements.txt'''<br/>
+   ```pip install -r requirements.txt```<br/>
    or
    '''py -m pip install -r requirements.txt '''<br/>
    if any module is missing, install it<br/>
