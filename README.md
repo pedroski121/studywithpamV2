@@ -1,4 +1,4 @@
-To run this on your local pc
+To run this on your pc
 
 1. Ensure you have python3 and pip installed on your local machine
 2. In the project directory run
