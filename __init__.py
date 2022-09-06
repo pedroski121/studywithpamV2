@@ -8,7 +8,7 @@ from .routes.home import home_blueprint
 from .routes.admin import admin_blueprint
 from .routes.admin_dashboard import admin_dashboard_blueprint
 from .routes.view_articles import view_articles_blueprint
-from .routes.test import test_blueprint
+from .routes.test_suite import test_blueprint
 from .routes.error import error_blueprint
 from .routes.security import security_blueprint
 from .routes.upload_image import upload_image_blueprint
@@ -35,6 +35,7 @@ def create_app():
     app.register_blueprint(admin_dashboard_blueprint)
     app.register_blueprint(view_articles_blueprint)
     app.register_blueprint(error_blueprint)
+    app.register_blueprint(test_blueprint)
     app.register_blueprint(security_blueprint)
     app.register_blueprint(upload_image_blueprint)
     Bootstrap(app)
